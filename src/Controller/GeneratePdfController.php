@@ -84,7 +84,7 @@ class GeneratePdfController extends AbstractController
             $dataToRender['form'] = $form->createView();
         }
         
-        return $this->render('generate_pdf/index.html.twig', $dataToRender);
+        return $this->render('generate_pdf/generate_pdf.html.twig', $dataToRender);
         
     }
 }

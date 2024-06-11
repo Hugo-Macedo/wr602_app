@@ -15,7 +15,7 @@ class HistoryController extends AbstractController
 
         $pdfs = $user->getPdfs();
         
-        return $this->render('history/index.html.twig', [
+        return $this->render('history/history.html.twig', [
             'controller_name' => 'HistoryController',
             'user' => $user,
             'pdfs' => $pdfs,

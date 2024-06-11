@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card my-5">
+                <div class="card-body">
+                    <h1 class="card-title text-center mb-4">Accueil</h1>
+                    {% if user %}
+                        <p class="card-text text-primary">Bienvenue, {{ user.firstname }}!</p>
+                        <ul class="list-group mb-3">
+                            <li class="list-group-item"><a href="{{ path('app_history') }}" class="text-primary text-decoration-none">Voir mes PDF</a></li>
+                            <li class="list-group-item"><a href="{{ path('app_logout') }}" class="text-danger text-decoration-none">Me déconnecter</a></li>
+                            <li class="list-group-item"><a href="{{ path('app_handle_subscription') }}" class="text-primary text-decoration-none">Gérer mon abonnement</a></li>
+                        </ul>
+                        <div>
+                            <h1>Bienvenue sur Save2PDF</h1>
+                            <p>Save2PDF est une application web simple et efficace conçue pour vous permettre de convertir facilement des pages web en fichiers PDF. Que vous ayez besoin de sauvegarder des articles, des recettes, des factures ou tout autre contenu en ligne, Save2PDF vous offre une solution rapide et pratique.</p>
+
+                            <h1>Transformez les URL en PDF en un seul clic</h1>
+                            <p>Avec Save2PDF, il vous suffit de copier et coller l'URL de la page web que vous souhaitez convertir en PDF, et notre application se charge du reste. Plus besoin de jongler avec des extensions de navigateur ou des logiciels compliqués - obtenez votre document au format PDF en un seul clic.</p>
+
+                            <h1>Pratique et personnalisé</h1>
+                            <p>Personnalisez vos fichiers PDF en choisissant parmi une gamme d'options, telles que la mise en page, les marges, la qualité d'image et plus encore. Obtenez des fichiers PDF impeccables, prêts à être partagés ou archivés selon vos besoins.</p>
+
+                            <h1>Gratuit et sans publicité</h1>
+                            <p>Save2PDF est entièrement gratuit et sans publicité. Nous croyons en la simplicité et l'accessibilité, c'est pourquoi notre application est disponible pour tous, sans frais cachés ni distractions publicitaires.</p>
+
+                            <h1>Prêt à commencer ?</h1>
+                            <p>Essayez Save2PDF dès aujourd'hui et découvrez la simplicité de la conversion de pages web en PDF. Convertissez, téléchargez et partagez vos documents PDF en toute simplicité, où que vous soyez.</p>
+                        </div>
+                    {% else %}
+                        <ul class="list-group mb-3">
+                            <li class="list-group-item"><a href="{{ path('app_login') }}" class="text-primary text-decoration-none">Me connecter</a></li>
+                            <li class="list-group-item"><a href="{{ path('app_register') }}" class="text-primary text-decoration-none">M'inscrire</a></li>
+                        </ul>
+                    {% endif %}
+                    <ul class="list-group">
+                        <li class="list-group-item"><a href="{{ path('app_generate-pdf') }}" class="text-primary text-decoration-none">Générer un PDF</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

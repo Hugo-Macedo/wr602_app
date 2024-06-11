@@ -10,7 +10,7 @@ use Doctrine\ORM\EntityManagerInterface;
 
 
 
-class HandleSubscriptionController extends AbstractController
+class SubscriptionController extends AbstractController
 {
     #[Route('/handle-subscription', name: 'app_handle_subscription')]
   public function index(EntityManagerInterface $entityManager): Response
@@ -21,8 +21,8 @@ class HandleSubscriptionController extends AbstractController
     $subscriptionRepository = $entityManager->getRepository(Subscription::class);
     $availableSubscriptions = $subscriptionRepository->findAll();
 
-    return $this->render('handle_subscription/index.html.twig', [
-        'controller_name' => 'HandleSubscriptionController',
+    return $this->render('subscription/subscription.html.twig', [
+        'controller_name' => 'SubscriptionController',
         'user' => $user,
         'currentSubscription' => $currentSubscription,
         'availableSubscriptions' => $availableSubscriptions
