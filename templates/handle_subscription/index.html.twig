@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HandleSubscriptionController!{% endblock %}
+
+{% block stylesheets %}
+    {# Inclure le lien vers Bootstrap CSS ici #}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+{% endblock %}
+
+{% block body %}
+<div class="container">
+                    <h1 class="card-title text-center mt-4 mb-4">Gérer mon abonnement</h1>
+    <div class="row">
+        {% for subscription in availableSubscriptions %}
+        <div class="col-md-4">
+            <div class="card {% if subscription.title == currentSubscription.title %} bg-secondary text-white{% endif %}">
+                <div class="card-body">
+                    {% if subscription.title == currentSubscription.title %}
+                        <span class="badge badge-danger mb-3">Abonnement en cours !</span>
+                    {% endif %}
+                    <h5 class="card-title">Abonnement : {{ subscription.title }}</h5>
+                    <p class="card-text">Limite de conversion : {{ subscription.pdfLimit }}</p>
+                    <p class="card-text">Prix : {{ subscription.price }}</p>
+                    <a href="{{ path('app_change_subscription', {'id': subscription.id}) }}" class="btn btn-primary">Choisir cet abonnement</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {# <p>Prochain renouvellement : {{ nextRenewalDate }}</p> #}
+</div>
+{% endblock %}

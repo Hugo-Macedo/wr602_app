@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PDF Gallery{% endblock %}
+
+{% block stylesheets %}
+    {# Inclure le lien vers Bootstrap CSS ici #}
+{% endblock %}
+
+{% block body %}
+<div class="container py-5">
+                    <h1 class="card-title text-center mb-4">Mes PDF</h1>
+
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+        {% for pdf in pdfs %}
+        <div class="col">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5 class="card-title mb-0">Nom du PDF : {{ pdf.title }}</h5>
+                        <small class="text-muted">Date de création : {{ pdf.createdAt|date('d/m/Y H:i:s') }}</small>
+                    </div>
+                    <div class="embed-responsive embed-responsive-16by9 mb-3">
+                        <embed src="{{ pdf.path }}" type="application/pdf" class="embed-responsive-item">
+                    </div>
+                    <p class="card-text">Lien de la page convertie : <a href="{{ pdf.url }}" class="btn btn-link">Lien</a></p>
+                </div>
+                <div class="card-footer d-flex justify-content-between">
+                    <button class="btn btn-primary" onclick="window.open('{{ pdf.path }}')">Afficher dans un nouvel onglet</button>
+                    <a href="{{ pdf.path }}" download="{{ pdf.title }}.pdf" class="btn btn-secondary">Télécharger</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
