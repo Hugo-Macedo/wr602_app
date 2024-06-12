@@ -1,28 +1,78 @@
+{# templates/subscription/subscription.html.twig #}
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HandleSubscriptionController!{% endblock %}
+{% block title %}Gérer mon abonnement{% endblock %}
 
 {% block stylesheets %}
-    {# Inclure le lien vers Bootstrap CSS ici #}
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .container {
+            margin-top: 3rem;
+            overflow-y: auto;
+        }
+
+        .title {
+            font-size: 2.5rem;
+            color: #343a40;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .subscription-card {
+            display: inline-block;
+            width: calc(33.333% - 20px);
+            margin: 10px;
+            border: 2px solid transparent;
+            border-radius: 8px;
+        }
+
+        .subscription-card.selected {
+            border-color: #007bff;
+        }
+
+        .card-body {
+            padding: 1.25rem;
+            text-align: center;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            color: #343a40;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-text {
+            font-size: 1.1rem;
+            color: #6c757d;
+            margin-bottom: 0.5rem;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+    </style>
 {% endblock %}
 
 {% block body %}
 <div class="container">
-                    <h1 class="card-title text-center mt-4 mb-4">Gérer mon abonnement</h1>
-    <div class="row">
+    <h1 class="title">Gérer mon abonnement</h1>
+    <div class="row justify-content-center">
         {% for subscription in availableSubscriptions %}
-        <div class="col-md-4">
-            <div class="card {% if subscription.title == currentSubscription.title %} bg-secondary text-white{% endif %}">
-                <div class="card-body">
-                    {% if subscription.title == currentSubscription.title %}
-                        <span class="badge badge-danger mb-3">Abonnement en cours !</span>
-                    {% endif %}
-                    <h5 class="card-title">Abonnement : {{ subscription.title }}</h5>
-                    <p class="card-text">Limite de conversion : {{ subscription.pdfLimit }}</p>
-                    <p class="card-text">Prix : {{ subscription.price }}</p>
-                    <a href="{{ path('app_change_subscription', {'id': subscription.id}) }}" class="btn btn-primary">Choisir cet abonnement</a>
-                </div>
+        <div class="subscription-card{% if subscription.title == currentSubscription.title %} selected{% endif %}">
+            <div class="card-body">
+                <h5 class="card-title">Abonnement : {{ subscription.title }}</h5>
+                <p class="card-text">Limite de conversion : {{ subscription.pdfLimit }}</p>
+                <p class="card-text">Prix : {{ subscription.price }}</p>
+                <a href="{{ path('app_change_subscription', {'id': subscription.id}) }}" class="btn btn-primary">Choisir cet abonnement</a>
             </div>
         </div>
         {% endfor %}

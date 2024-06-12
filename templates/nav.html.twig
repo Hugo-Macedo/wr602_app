@@ -1,0 +1,54 @@
+{# templates/nav.html.twig #}
+<style>
+    * {
+        margin: 0;
+    }
+    .navbar {
+        background-color: #f8f9fa;
+        padding: 1rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar-brand {
+        color: #343a40;
+        font-size: 1.5rem;
+        text-decoration: none;
+    }
+
+    .nav-links {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        width: 45%;
+        float: right;
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    .nav-item {
+        display: inline-block;
+        margin-left: 1rem;
+    }
+
+    .nav-link {
+        color: #343a40;
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+        transition: color 0.3s ease;
+        width:auto;
+    }
+
+    .nav-link:hover {
+        color: #007bff;
+    }
+</style>
+
+<nav class="navbar">
+    <a href="/" class="navbar-brand">Save2Pdf</a>
+    <ul class="nav-links">
+        <li class="nav-item"><a href="{{ path('app_generate-pdf') }}" class="nav-link">Générer un PDF</a></li>
+        <li class="nav-item"><a href="{{ path('app_history') }}" class="nav-link">Historique PDF</a></li>
+        <li class="nav-item"><a href="{{ path('app_handle_subscription') }}" class="nav-link">Mon abonnement</a></li>
+        <li class="nav-item"><a href="{{ path('app_logout') }}" class="nav-link">Déconnexion</a></li>
+    </ul>
+</nav>
